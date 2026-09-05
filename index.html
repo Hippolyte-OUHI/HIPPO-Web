@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hippo Consulting — Connecter pour grandir</title>
+<link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#101E1E;
+    --forest-panel:#182726;
+    --forest-line: rgba(252,248,237,0.14);
+    --cream:#FCF8ED;
+    --cream-dim:#F3ECD9;
+    --gold:#C9A227;
+    --gold-bright:#E1BE52;
+    --cacao:#3D2417;
+    --ink:#16211F;
+    --sage:#8A9A7E;
+    --max: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){ .wrap{padding:0 22px;} }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(16,30,30,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--forest-line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+    color:var(--cream);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:40px; height:40px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .brand-mark img{ width:100%; height:100%; object-fit:contain; }
+  .brand-text{ font-family:'Fraunces',serif; font-weight:600; font-size:17px; letter-spacing:0.01em; }
+  .brand-text span{ display:block; font-family:'Inter',sans-serif; font-weight:400; font-size:10.5px; color:var(--gold); letter-spacing:0.06em; margin-top:1px; }
+  .navlinks{ display:flex; gap:30px; font-size:14px; }
+  .navlinks a{ text-decoration:none; color:var(--cream-dim); border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s, color .2s; }
+  .navlinks a:hover{ color:var(--gold-bright); border-color:var(--gold-bright); }
+  .nav-cta{ font-size:13.5px; padding:9px 18px; border:1px solid var(--gold); border-radius:2px; color:var(--gold-bright); text-decoration:none; white-space:nowrap; }
+  .nav-cta:hover{ background:var(--gold); color:var(--forest); }
+  @media(max-width:820px){ .navlinks{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--forest);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:88px 0 96px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.75fr;
+    gap:40px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .kicker{
+    color:var(--gold);
+    font-size:14px;
+    font-style:italic;
+    font-family:'Fraunces',serif;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 62px);
+    color:var(--cream);
+    max-width:11.5ch;
+  }
+  .hero h1 em{ font-style:italic; color:var(--gold-bright); }
+  .hero p.lead{
+    margin-top:26px;
+    max-width:46ch;
+    color:var(--cream-dim);
+    font-size:17px;
+  }
+  .hero-ctas{ margin-top:36px; display:flex; gap:18px; align-items:center; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--gold);
+    color:var(--forest);
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-block;
+  }
+  .btn-primary:hover{ background:var(--gold-bright); }
+  .btn-ghost{
+    color:var(--cream);
+    text-decoration:none;
+    font-size:15px;
+    border-bottom:1px solid var(--forest-line);
+    padding-bottom:3px;
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-bright); }
+
+  .hero-graphic{ position:relative; }
+  .hero-graphic svg{ width:100%; height:auto; }
+
+  /* ---------- MISSION STRIP ---------- */
+  .mission{
+    background:var(--cream);
+    padding:88px 0;
+    border-bottom:1px solid rgba(16,30,30,0.1);
+  }
+  .mission-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:64px;
+  }
+  .mission p.body-lg{ font-size:19px; line-height:1.7; color:var(--ink); }
+  .mission .devise{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(26px,3vw,34px);
+    color:var(--cacao);
+    border-left:2px solid var(--gold);
+    padding-left:28px;
+  }
+  .mission .devise small{
+    display:block; font-family:'Inter',sans-serif; font-style:normal; font-weight:500;
+    font-size:12.5px; letter-spacing:0.04em; color:var(--sage); margin-top:14px;
+  }
+  @media(max-width:760px){ .mission-grid{grid-template-columns:1fr; gap:36px;} }
+
+  /* ---------- SECTION LABEL ---------- */
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,40px); }
+  .section-head p{ margin-top:16px; color:var(--sage); font-size:16px; max-width:52ch; }
+  .section-head.on-dark p{ color:var(--cream-dim); opacity:.75; }
+  .section-head.on-dark h2{ color:var(--cream); }
+
+  /* ---------- DOMAINES ---------- */
+  .domains{ background:var(--forest); color:var(--cream); padding:96px 0; }
+  .domain-list{ border-top:1px solid var(--forest-line); }
+  .domain-row{
+    display:grid;
+    grid-template-columns: 60px 1.3fr 1fr;
+    gap:32px;
+    padding:34px 0;
+    border-bottom:1px solid var(--forest-line);
+    align-items:start;
+  }
+  .domain-num{ font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:15px; padding-top:4px;}
+  .domain-title{ font-family:'Fraunces',serif; font-weight:600; font-size:22px; color:var(--cream); margin-bottom:8px;}
+  .domain-desc{ color:var(--cream-dim); opacity:.82; font-size:15px; max-width:48ch; }
+  .domain-metric{
+    justify-self:end;
+    text-align:right;
+    font-size:13px;
+    color:var(--cream-dim);
+    opacity:.75;
+  }
+  .domain-metric .arrow-stat{
+    font-family:'Fraunces',serif; color:var(--gold-bright); font-size:16px; font-weight:600;
+    display:block; margin-top:4px;
+  }
+  @media(max-width:760px){
+    .domain-row{ grid-template-columns: 36px 1fr; }
+    .domain-metric{ grid-column: 2; justify-self:start; text-align:left; margin-top:10px; }
+  }
+
+  /* ---------- DIGITAL SUITE ---------- */
+  .suite{ background:var(--cream); padding:96px 0; }
+  .suite-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:1px;
+    background:rgba(16,30,30,0.14);
+    border:1px solid rgba(16,30,30,0.14);
+  }
+  .app-card{
+    background:var(--cream);
+    padding:36px 34px;
+  }
+  .app-card.wide{ grid-column: span 2; display:grid; grid-template-columns: 200px 1fr; gap:34px; align-items:center; }
+  .app-tag{
+    display:inline-block;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:13.5px;
+    margin-bottom:14px;
+  }
+  .app-card h3{ font-size:22px; color:var(--ink); margin-bottom:10px; }
+  .app-card p{ color:#54605c; font-size:14.5px; max-width:44ch; }
+  .app-chips{ margin-top:18px; display:flex; gap:8px; flex-wrap:wrap; }
+  .app-chips span{
+    font-size:12px; color:var(--cacao); border:1px solid rgba(61,36,23,0.28);
+    padding:5px 10px; border-radius:2px;
+  }
+  .app-shot{
+    border:1px solid rgba(16,30,30,0.16);
+    background:var(--forest);
+    line-height:0;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    max-height:520px;
+    overflow-y:auto;
+  }
+  .app-shot img{ width:100%; height:auto; display:block; }
+  .app-card:not(.wide) .app-shot{ margin-bottom:22px; }
+  @media(max-width:760px){
+    .suite-grid{ grid-template-columns:1fr; }
+    .app-card.wide{ grid-column: span 1; grid-template-columns:1fr; }
+    .app-card.wide .app-shot{ order:-1; }
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{ background:var(--cream-dim); padding:96px 0; }
+  .process-grid{ display:grid; grid-template-columns: 1fr auto; gap:56px; align-items:start; }
+  .process-shot .phone-frame{ width:240px; max-height:600px; overflow-y:auto; margin-left:auto; box-shadow:0 18px 40px rgba(16,30,30,0.18); border-color:#0b1615; }
+  @media(max-width:820px){ .process-grid{ grid-template-columns:1fr; } .process-shot .phone-frame{ margin:0 auto; } }
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap:0;
+    position:relative;
+    margin-top:20px;
+  }
+  .steps::before{
+    content:"";
+    position:absolute; top:19px; left:0; right:0; height:1px;
+    background:rgba(16,30,30,0.18);
+  }
+  .step{ position:relative; padding-right:14px; }
+  .step-num{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--forest); color:var(--gold-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:15px;
+    position:relative; z-index:2;
+    margin-bottom:16px;
+  }
+  .step h4{ font-family:'Fraunces',serif; font-size:15.5px; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .step p{ font-size:12.5px; color:var(--sage); line-height:1.5; }
+  @media(max-width:900px){
+    .steps{ grid-template-columns: repeat(2, 1fr); gap:28px 20px; }
+    .steps::before{ display:none; }
+  }
+
+  /* ---------- CTA / FOOTER ---------- */
+  .cta{
+    background:var(--forest); color:var(--cream);
+    padding:96px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-inner{ text-align:center; max-width:680px; margin:0 auto; position:relative; z-index:2;}
+  .cta h2{ font-size:clamp(30px,4vw,44px); color:var(--cream); }
+  .cta p{ margin-top:18px; color:var(--cream-dim); font-size:16px; }
+  .cta .btn-primary{ margin-top:32px; }
+
+  .footer-grid{
+    margin-top:88px;
+    padding-top:36px;
+    border-top:1px solid var(--forest-line);
+    display:grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap:32px;
+    font-size:14px;
+  }
+  .footer-grid .brand-text{ color:var(--cream); }
+  .footer-grid h5{ font-family:'Inter',sans-serif; font-weight:600; font-size:12.5px; color:var(--gold); margin-bottom:12px; letter-spacing:0.02em;}
+  .footer-grid p, .footer-grid a{ color:var(--cream-dim); text-decoration:none; opacity:.85; }
+  .footer-grid a:hover{ color:var(--gold-bright); opacity:1; }
+  .footer-grid ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;}
+  .footer-bottom{ margin-top:56px; font-size:12.5px; color:var(--cream-dim); opacity:.55; text-align:center;}
+  @media(max-width:700px){ .footer-grid{ grid-template-columns:1fr; gap:26px; } }
+
+  ::selection{ background:var(--gold); color:var(--forest); }
+  /* ---------- GALLERY (static) ---------- */
+  .gallery{ background:var(--cream); padding:96px 0; }
+  .gallery-grid{
+    column-count:3;
+    column-gap:18px;
+  }
+  .gallery-item{ position:relative; overflow:hidden; border:1px solid rgba(16,30,30,0.14); background:var(--forest-panel); margin:0 0 18px; display:inline-block; width:100%; break-inside:avoid; }
+  .gallery-item img{ width:100%; height:auto; display:block; }
+  .gallery-item figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:14px 16px 12px;
+    background:linear-gradient(to top, rgba(16,30,30,0.88), rgba(16,30,30,0));
+    color:var(--cream);
+    font-size:12.5px;
+  }
+  .gallery-note{ margin-top:24px; font-size:12.5px; color:var(--sage); max-width:56ch; }
+  @media(max-width:760px){ .gallery-grid{ column-count:2; } }
+  @media(max-width:480px){ .gallery-grid{ column-count:1; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <div class="brand-mark"><img src="images/logo-hippo-consulting.jpg" alt="Logo Hippo Consulting"></div>
+      <div class="brand-text">Hippo Consulting<span>Connecter pour grandir</span></div>
+    </div>
+    <div class="navlinks">
+      <a href="#domaines">Expertises</a>
+      <a href="#suite">Digital Suite</a>
+      <a href="#process">Démarrer</a>
+      <a href="#galerie">Photos</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="#contact">Demander une démo</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">Consultance & mise en relation — industrie agro-alimentaire</div>
+      <h1>Connecter les acteurs qui font <em>grandir</em> l'agro-industrie africaine.</h1>
+      <p class="lead">Hippo Consulting accompagne producteurs, transformateurs et distributeurs du cacao à l'engrais, en combinant expertise terrain, mise en relation stratégique et outils de pilotage sur mesure.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact">Demander une démonstration</a>
+        <a class="btn-ghost" href="#domaines">Voir nos 8 domaines d'expertise</a>
+      </div>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+      <svg viewBox="0 0 420 460" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#C9A227" stroke-width="1" opacity="0.75" fill="none">
+          <line x1="210" y1="60" x2="90" y2="150"/>
+          <line x1="210" y1="60" x2="210" y2="150"/>
+          <line x1="210" y1="60" x2="330" y2="150"/>
+          <line x1="90" y1="150" x2="40" y2="250"/>
+          <line x1="90" y1="150" x2="130" y2="250"/>
+          <line x1="210" y1="150" x2="150" y2="250"/>
+          <line x1="210" y1="150" x2="270" y2="250"/>
+          <line x1="330" y1="150" x2="290" y2="250"/>
+          <line x1="330" y1="150" x2="380" y2="250"/>
+          <line x1="40" y1="250" x2="60" y2="340"/>
+          <line x1="130" y1="250" x2="110" y2="340"/>
+          <line x1="150" y1="250" x2="180" y2="340"/>
+          <line x1="270" y1="250" x2="240" y2="340"/>
+          <line x1="290" y1="250" x2="310" y2="340"/>
+          <line x1="380" y1="250" x2="360" y2="340"/>
+        </g>
+        <g fill="#FCF8ED">
+          <circle cx="210" cy="60" r="5"/>
+        </g>
+        <g fill="#C9A227">
+          <circle cx="90" cy="150" r="4"/><circle cx="210" cy="150" r="4"/><circle cx="330" cy="150" r="4"/>
+        </g>
+        <g fill="#8A9A7E">
+          <circle cx="40" cy="250" r="3.5"/><circle cx="130" cy="250" r="3.5"/>
+          <circle cx="150" cy="250" r="3.5"/><circle cx="270" cy="250" r="3.5"/>
+          <circle cx="290" cy="250" r="3.5"/><circle cx="380" cy="250" r="3.5"/>
+        </g>
+        <g fill="#FCF8ED" opacity="0.6">
+          <circle cx="60" cy="340" r="3"/><circle cx="110" cy="340" r="3"/>
+          <circle cx="180" cy="340" r="3"/><circle cx="240" cy="340" r="3"/>
+          <circle cx="310" cy="340" r="3"/><circle cx="360" cy="340" r="3"/>
+        </g>
+        <text x="20" y="410" fill="#FCF8ED" opacity="0.4" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">PRODUCTEURS</text>
+        <text x="20" y="428" fill="#FCF8ED" opacity="0.4" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">TRANSFORMATEURS</text>
+        <text x="220" y="428" fill="#FCF8ED" opacity="0.4" font-family="Inter, sans-serif" font-size="11" letter-spacing="1">MARCHÉS</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="wrap mission-grid">
+    <p class="body-lg">Hippo Consulting est un cabinet spécialisé en consultance de performance et en mise en relation pour les acteurs du secteur agro-industriel. Fort d'une expertise terrain dans les filières de transformation agricole, nous accompagnons les entreprises dans l'amélioration de leurs processus, l'optimisation de leurs performances et le développement de leurs réseaux commerciaux — entre les filières cacao, café, huile de palme, jus et fruits séchés, nutrition animale, engrais et céréales.</p>
+    <div class="devise">« La croissance durable naît de connexions solides — entre les hommes, les entreprises et les marchés. »
+      <small>Notre approche repose sur trois piliers : expertise sectorielle, mise en relation stratégique et accompagnement opérationnel par la donnée.</small>
+    </div>
+  </div>
+</section>
+
+<section class="domains" id="domaines">
+  <div class="wrap">
+    <div class="section-head on-dark">
+      <h2>Huit domaines, une même méthode.</h2>
+      <p>Du diagnostic terrain à la mise en marché, chaque filière est traitée avec ses propres indicateurs de performance.</p>
+    </div>
+    <div class="domain-list">
+
+      <div class="domain-row">
+        <div class="domain-num">01</div>
+        <div><div class="domain-title">Cacao & Café</div><div class="domain-desc">Audit de transformation, optimisation du process de fermentation et séchage, contrôle qualité HACCP/ISO 22000, valorisation des co-produits et mise en relation avec chocolatiers et torréfacteurs.</div></div>
+        <div class="domain-metric">Rendement transformation<span class="arrow-stat">78% → 82–84%</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">02</div>
+        <div><div class="domain-title">Huile de Palme & Co-produits</div><div class="domain-desc">Optimisation de l'extraction du CPO, gestion des effluents POME, valorisation des tourteaux et fibres, accompagnement vers la certification RSPO.</div></div>
+        <div class="domain-metric">Taux d'extraction CPO<span class="arrow-stat">20–22% → 23–25%</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">03</div>
+        <div><div class="domain-title">Nutrition Animale</div><div class="domain-desc">Formulation de rations équilibrées avec matières premières locales, audit nutritionnel, reformulation selon les prix, contrôle qualité et mise en relation fournisseurs.</div></div>
+        <div class="domain-metric">Indice de consommation volaille<span class="arrow-stat">2,0–2,3 → 1,7–1,9</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">04</div>
+        <div><div class="domain-title">Jus de Fruits, Fruits Séchés & Dérivés</div><div class="domain-desc">Conception de lignes de transformation, formulation de nouveaux produits, normes d'hygiène et conservation, accès aux marchés export.</div></div>
+        <div class="domain-metric">Pertes post-récolte<span class="arrow-stat">30–40% → &lt;10%</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">05</div>
+        <div><div class="domain-title">Fabrication d'Engrais Chimiques</div><div class="domain-desc">Ingénierie de formulation NPK adaptée aux sols et cultures, optimisation de la granulation, sourcing des matières premières, distribution et conseil agronomique.</div></div>
+        <div class="domain-metric">Rendement maïs avec engrais local<span class="arrow-stat">2–3 t/ha → 4–6 t/ha</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">06</div>
+        <div><div class="domain-title">Transformation des Céréales & Denrées Agricoles</div><div class="domain-desc">Audit des unités de mouture, optimisation des rendements, traçabilité des lots, valorisation des sous-produits et développement de farines enrichies.</div></div>
+        <div class="domain-metric">Pertes post-récolte<span class="arrow-stat">25–40% → &lt;8%</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">07</div>
+        <div><div class="domain-title">Mise en Relation B2B / B2C</div><div class="domain-desc">Identification et qualification des prospects, organisation de rencontres commerciales, négociation, partenariats stratégiques et suivi des relations dans la durée.</div></div>
+        <div class="domain-metric">Délai de mise en marché<span class="arrow-stat">6–18 mois → 2–4 mois</span></div>
+      </div>
+
+      <div class="domain-row">
+        <div class="domain-num">08</div>
+        <div><div class="domain-title">Tableaux de Bord & Suivi d'Activité</div><div class="domain-desc">Diagnostic des systèmes existants, conception de KPI par filière, mise en place de la collecte de données, analyse et formation des équipes.</div></div>
+        <div class="domain-metric">Délai de détection d'anomalies<span class="arrow-stat">Semaines → heures</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="suite" id="suite">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>La Digital Suite Hippo Consulting</h2>
+      <p>Cinq applications métiers, pensées pour le terrain agro-industriel : production, qualité, maintenance et pilotage matière, accessibles depuis le mobile.</p>
+    </div>
+    <div class="suite-grid">
+
+      <div class="app-card wide">
+        <div class="app-shot"><img src="images/app-suivi-production-kpi.jpg" alt="Capture d'écran de l'application Suivi Production & KPI"></div>
+        <div>
+        <span class="app-tag">Production</span>
+        <h3>Suivi Production & KPI</h3>
+        <p>Centralise les données de l'atelier — matière broyée, produit fini, pertes process, temps d'arrêt — avec calculs automatiques et alertes en temps réel.</p>
+        <div class="app-chips"><span>Saisie journalière des lots</span><span>Journal des arrêts</span><span>Export & impression PDF</span></div>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-shot"><img src="images/app-gestion-pieces-rechange.jpg" alt="Capture d'écran de l'application Gestion des Pièces de Rechange"></div>
+        <span class="app-tag">Maintenance</span>
+        <h3>Gestion des Pièces de Rechange</h3>
+        <p>Stock, mouvements et coûts de maintenance suivis en continu, avec alertes de stock critique et bilan annuel exportable.</p>
+        <div class="app-chips"><span>Traçabilité 100%</span><span>Multi-devises</span></div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-shot"><img src="images/app-monitoring-pertes-process.jpg" alt="Capture d'écran de l'application Monitoring des Pertes Process"></div>
+        <span class="app-tag">Qualité</span>
+        <h3>Monitoring des Pertes Process</h3>
+        <p>Huilerie & Palmisterie — 10 indices suivis chaque semaine, avec alertes de non-conformité et plan d'action correctif par écart.</p>
+        <div class="app-chips"><span>Huilerie — 6 indices</span><span>Palmisterie — 4 indices</span></div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-shot"><img src="images/app-hc-production-jus-boissons.jpg" alt="Capture d'écran de l'application HC Production"></div>
+        <span class="app-tag">Formulation</span>
+        <h3>HC Production — Jus & Boissons</h3>
+        <p>Fiches de fabrication de jus, nectars et boissons calculées et imprimées en un instant, avec ajustement automatique de l'eau qsp.</p>
+        <div class="app-chips"><span>14 formules</span><span>Partage WhatsApp</span></div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-shot"><img src="images/app-bilan-matiere-cacao.jpg" alt="Capture d'écran de l'application Bilan Matière Transformation Cacao"></div>
+        <span class="app-tag">Cacao</span>
+        <h3>Bilan Matière Transformation Cacao</h3>
+        <p>Fèves traitées, rendement usine, taux de déchets et humidité — calculés automatiquement à chaque saisie, avec suivi tarare par opérateur.</p>
+        <div class="app-chips"><span>Sauvegarde locale</span><span>Historique par date</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Démarrer une mission, en sept étapes.</h2>
+      <p>La fiche d'expression de besoin ouvre votre dossier et nous permet de vous proposer une réponse adaptée sous quelques jours ouvrés.</p>
+    </div>
+    <div class="process-grid">
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><h4>Identification</h4><p>Coordonnées de l'entreprise et du contact.</p></div>
+        <div class="step"><div class="step-num">2</div><h4>Domaine d'expertise</h4><p>Un ou plusieurs secteurs concernés.</p></div>
+        <div class="step"><div class="step-num">3</div><h4>Nature du besoin</h4><p>Audit, optimisation, mise en relation…</p></div>
+        <div class="step"><div class="step-num">4</div><h4>Description</h4><p>Contexte, objectifs, volumes concernés.</p></div>
+        <div class="step"><div class="step-num">5</div><h4>Contraintes</h4><p>Délais, budget indicatif, zone géographique.</p></div>
+        <div class="step"><div class="step-num">6</div><h4>Documents</h4><p>Données disponibles à transmettre.</p></div>
+        <div class="step"><div class="step-num">7</div><h4>Validation</h4><p>Signature et attribution d'une référence dossier.</p></div>
+      </div>
+      <div class="process-shot">
+        <div class="phone-frame"><img src="images/formulaire-expression-besoin.jpg" alt="Capture d'écran du formulaire d'expression de besoin"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galerie">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Vos activités en images</h2>
+      <p>Rencontres, salons et partenariats terrain — quelques moments de la vie de Hippo Consulting.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <figure class="gallery-item">
+        <img src="images/galerie-diakite-products-jncc2026.jpg" alt="10 ans DIAKITE & Products — stand cacao, JNCC 2026" loading="lazy">
+        <figcaption>10 ans DIAKITE & Products — stand cacao, JNCC 2026</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/galerie-echanges-cafe-cacao.jpg" alt="Échanges partenaires — filière café-cacao, salon professionnel" loading="lazy">
+        <figcaption>Échanges partenaires — filière café-cacao, salon professionnel</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/galerie-rencontre-b2b-agriterra.jpg" alt="Rencontre B2B — accompagnement Agriterra / Café-Cacao" loading="lazy">
+        <figcaption>Rencontre B2B — accompagnement Agriterra / Café-Cacao</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/galerie-agrifinance-cooperatives.jpg" alt="Mise en relation terrain — journées Agrifinance & coopératives" loading="lazy">
+        <figcaption>Mise en relation terrain — journées Agrifinance & coopératives</figcaption>
+      </figure>
+      <figure class="gallery-item">
+        <img src="images/galerie-presentation-tafissa.jpg" alt="Discussion — présentation Tafissa" loading="lazy">
+        <figcaption>Discussion — présentation Tafissa</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-inner">
+      <h2>Prêt à faire grandir votre activité ?</h2>
+      <p>Discutons de votre filière, de vos volumes et de vos objectifs — nous vous répondons sous quelques jours ouvrés.</p>
+      <a class="btn-primary" href="mailto:contact.hippoconsulting@yahoo.com">Demander une démonstration</a>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+          <div class="brand-mark"><img src="images/logo-hippo-consulting-footer.jpg" alt="Logo Hippo Consulting"></div>
+          <div class="brand-text">Hippo Consulting</div>
+        </div>
+        <p style="max-width:34ch;">Cabinet de consultance de performance et de mise en relation pour l'agro-industrie africaine et internationale.</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact.hippoconsulting@yahoo.com">contact.hippoconsulting@yahoo.com</a></li>
+          <li><a href="tel:+2250707453923">+225 07 07 45 39 23</a></li>
+          <li><a href="https://www.hippoconsulting.com">www.hippoconsulting.com</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Adresse</h5>
+        <ul>
+          <li>Abidjan, Côte d'Ivoire</li>
+          <li>Conseil agro-industriel</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Hippo Consulting — Connecter pour grandir</div>
+  </div>
+</section>
+
+</body>
+</html>
